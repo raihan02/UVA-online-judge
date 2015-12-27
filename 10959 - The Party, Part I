@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int tes;
+    cin >> tes;
+    int p = 0;
+    while(tes--)
+    {
+
+      if(p)
+        printf("\n");
+        int ver , ed;
+        int dis[1010] ={};
+        memset(dis, 0 , sizeof(dis));
+        vector <int> vc[1010];
+        cin >> ver >> ed;
+        int x , y;
+        for(int i = 0; i < ed; i++)
+        {
+            cin >> x >> y;
+            vc[x].push_back(y);
+            vc[y].push_back(x);
+        }
+
+        queue <int> q;
+        q.push(0);
+
+        while(!q.empty())
+        {
+            int u , v;
+            u = q.front();
+            q.pop();
+            for(int i = 0; i < vc[u].size(); i++)
+            {
+                v = vc[u][i];
+
+                if(!dis[v] && v)
+                {
+                    dis[v] =dis[u] + 1;
+
+                    q.push(v);
+                }
+            }
+        }
+
+        for(int i = 1; i < ver; i++)
+        {
+            cout<< dis[i] <<endl;
+        }
+       p = 1;
+    }
+}
