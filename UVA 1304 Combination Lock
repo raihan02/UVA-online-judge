@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int tes , ok = 0;
+    cin >> tes;
+ 
+    while(tes--)
+    {
+        ok++;
+        int n , p , j;
+        char c , m;
+ 
+        cin >> n;
+        vector<int> vc , vk;
+        for(int i = 0; i < n; i++)
+        {
+            cin >> c;
+ 
+            p = c - '0';
+            vc.push_back(p);
+        }
+        for(int i = 0; i < n; i++)
+        {
+            cin >> m;
+ 
+            j = m - '0';
+            vk.push_back(j);
+        }
+        int sum = 0;
+        for(int i = 0; i < vc.size(); i++)
+        {
+            if(vc[i] > vk[i])
+            {
+                int x = vc[i] - vk[i];
+                int y = 10 - (vc[i] - vk[i]);
+                if(x < y)
+                    sum = sum + x;
+                else
+                    sum = sum + y;
+            }
+            else
+            {
+                int x = vk[i] - vc[i];
+                int y = 10 - (vk[i] - vc[i]);
+                 if(x < y)
+                    sum = sum + x;
+                else
+                    sum = sum + y;
+            }
+        }
+        printf("Case %d: %d\n",ok ,sum);
+    }
+}
