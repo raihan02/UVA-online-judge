@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int x , y , tes;
+   cin >> tes;
+   while(tes--)
+   {
+       cin >> x;
+       vector <int> vc;
+       vector <int> :: iterator it , it1;
+       for(int i = 0; i < x; i++)
+       {
+           cin >> y;
+           vc.push_back(y);
+       }
+       it = max_element(vc.begin() , vc.end());
+       it1 = min_element(vc.begin() , vc.end());
+       printf("%d\n", 2 * (*it - *it1));
+       vc.clear();
+   }
+ 
+ 
+ 
+}
