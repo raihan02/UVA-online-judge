@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+ 
+   int tes;
+   int x ,y , k = 0;
+   double z ;
+   scanf("%d" ,&tes);
+ 
+   while(tes--)
+   {
+       k++;
+       scanf("%d %d" ,&x , &y);
+       z = ((double) x )* 0.5 * M_PI;
+ 
+       printf("Case %d: %.8lf\n",k,z  / y);
+   }
+ 
+ 
+}
