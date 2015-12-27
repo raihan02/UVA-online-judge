@@ -1,0 +1,32 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s , s1;
+    map <string, int> mp;
+    queue <string> s2;
+    for(char i = 'a'; i <= 'z'; i++)
+        s2.push(string(1 , i));
+        int c = 1;
+    while(s2.empty() == false)
+    {
+        s = s2.front();
+        s2.pop();
+        mp[s] = c++;
+        if(s.size() == 5)
+            continue;
+        for(char i = s[s.size() - 1] + 1; i <= 'z'; i++)
+            s2.push(s + i);
+    }
+    map<string , int>:: iterator it;
+    while(cin >> s1)
+    {
+       if(mp.find(s1)!= mp.end())
+        cout<<mp[s1]<<endl;
+       else
+        cout<<0<<endl;
+ 
+    }
+ 
+}
