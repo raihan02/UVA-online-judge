@@ -1,0 +1,25 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    char s[11];
+    int tes , p = 0;
+    cin >> tes;
+    getchar();
+    while(tes--){
+ 
+ 
+        cin >> s;
+ 
+        int l=strlen(s);
+        sort(s , s + l);
+        do{
+            cout<<s<<endl;;
+        }while(next_permutation(s, s + l));
+ 
+       cout<<endl;
+    }
+}
