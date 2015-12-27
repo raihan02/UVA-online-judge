@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int main()
+{
+ 
+   int tes , o = 0;
+   cin >> tes;
+   while(tes--)
+   {
+       o++;
+       int a , b;
+       cin >>a >> b;
+ 
+       if(a == 0 && b == 0)
+        printf("Case %d: 0.000 0.000\n",o);
+        else if(a % 2 == 0 && b % 2 == 0)
+        {
+          printf("Case %d: 1.000 0.000\n",o);
+        }
+        else if(a % 2 == 1 && b % 2 == 0)
+            printf("Case %d: 1.000 0.000\n",o);
+        else if(a % 2 == 0 && b % 2 == 1)
+            printf("Case %d: 0.000 1.000\n",o);
+        else if(a % 2 == 1 && b % 2 == 1)
+            printf("Case %d: 0.000 1.000\n",o);
+   }
+ 
+ 
+}
