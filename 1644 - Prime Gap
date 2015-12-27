@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define max 1299720
+#include <vector>
+bool pr[max];
+long long int a[max - 1];
+void prime()
+{
+    memset(pr, true , max);
+    pr[0] = false;
+    pr[1] = false;
+    int c = 0;
+    for(int i = 2; i <= (int) sqrt(max) + 1; i++)
+    {
+        if(pr[i])
+        {
+            for(int j = i * i; j < max; j= j+ i)
+            {
+                pr[j] = false;
+            }
+        }
+
+    }
+}
+
+int main()
+{
+   long long int n;
+   prime();
+   while(cin >> n)
+   {
+       if(n == 0)
+        break;
+      long long int k , m   , d , p , r;
+       for(int i = n; i >= 0; i--)
+       {
+           if(pr[i]){
+           k = i;
+           break;
+           }
+
+
+       }
+       m = n - k;
+
+       for(int i = n; i <=  1299709; i++)
+       {
+           if(pr[i])
+           {
+               d = i;
+               break;
+           }
+       }
+
+       r = d - n;
+
+       cout<<r + m<<endl;
+   }
+}
