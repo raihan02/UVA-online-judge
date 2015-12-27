@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int tes;
+   cin >> tes;
+   getchar();
+   stack< string> st;
+   vector<string> vs;
+   int c = 0 , p = 0;;
+   while(tes--)
+   {
+ 
+ 
+       string s, s1;
+       cin >> s;
+       if(s == "Sleep")
+       {
+           cin >> s1;
+           st.push(s1);
+ 
+       }
+       if(!st.empty() && s == "Test")
+       {
+           cout<<st.top()<<endl;
+        vs.push_back(st.top());
+        p++;
+       }
+       if(!st.empty() && s == "Kick")
+       {
+           st.pop();
+       }
+       if(st.empty() && s == "Test")
+        printf("Not in a dream\n");
+ 
+   }
+ 
+}
