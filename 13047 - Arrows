@@ -1,0 +1,135 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   string s , s1 , s2;
+   int o = 0;
+   int tes;
+   cin >> tes;
+   while(tes--)
+   {
+       o++;
+       vector <int> vc;
+       vector<int> :: iterator it;
+       cin >> s;
+       int a =0 , b= 0;
+       for(int i = 0; i < s.length(); i++)
+       {
+           if(s[i] == '<')
+            a++;
+           if(s[i] == '>')
+            b++;
+       }
+       if(a == 0 && b == 0)
+       {
+           printf("Case %d: -1\n",o);
+           continue;
+       }
+ 
+       int   max1= 0;
+       ///int max1 = 0;
+       for(int i = 0; i < s.length(); i++)
+       {
+           int p = 0;
+           if(s[i] == '<')
+           {
+               for(int j = i + 1; j < s.length(); j++)
+               {
+                   if(s[j] == '-')
+                    p++;
+ 
+                    if(s[j] == '=' || s[j] == '>' || s[j] == '<')
+                    break;
+               }
+ 
+           }
+           if(max1 < p){
+            max1 = p;
+           p = 0;
+           }
+       }
+ 
+       vc.push_back(max1);
+       s1 = s;
+       reverse(s.begin(), s.end());
+       int max2  = 0;
+ 
+       for(int i = 0; i < s.length(); i++)
+       {
+            int t = 0;
+           if(s[i] == '>')
+           {
+ 
+               for(int j = i + 1; j < s.length(); j++)
+               {
+                   if(s[j] == '-')
+                    t++;
+ 
+                    if(s[j] == '=' || s[j] == '>' || s[j] == '<')
+                    break;
+               }
+ 
+           }
+           if(max2 < t)
+            max2 = t;
+       }
+    vc.push_back(max2);
+    int max3 = 0;
+ 
+       ///int max1 = 0;
+       for(int i = 0; i < s1.length(); i++)
+       {
+           int x = 0;
+           if(s1[i] == '<')
+           {
+               for(int j = i + 1; j < s.length(); j++)
+               {
+                   if(s1[j] == '=')
+                    x++;
+ 
+                    if(s1[j] == '-' || s1[j] == '>' || s1[j] == '<')
+                    break;
+               }
+ 
+           }
+           if(max3 < x){
+            max3 = x;
+ 
+           }
+       }
+    vc.push_back(max3);
+    reverse(s1.begin(), s1.end());
+    int max4  = 0;
+ 
+       for(int i = 0; i < s.length(); i++)
+       {
+            int y = 0;
+           if(s1[i] == '>')
+           {
+ 
+               for(int j = i + 1; j < s.length(); j++)
+               {
+                   if(s1[j] == '=')
+                    y++;
+ 
+                    if(s1[j] == '-' || s1[j] == '>' || s1[j] == '<')
+                    break;
+               }
+ 
+           }
+           if(max4 < y)
+            max4 = y;
+       }
+       vc.push_back(max4);
+       it = max_element(vc.begin(),vc.end());
+       printf("Case %d: %d\n",o ,*it + 1);
+       vc.clear();
+ 
+ 
+ 
+ 
+   }
+ 
+ 
+ 
+}
