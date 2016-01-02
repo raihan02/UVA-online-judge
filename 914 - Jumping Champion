@@ -1,0 +1,132 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define max 1000020
+#include <vector>
+bool pr[max];
+long long int a[max - 1];
+void prime()
+{
+    memset(pr, true , max);
+    pr[0] = false;
+    pr[1] = false;
+    int c = 0;
+    for(int i = 2; i <= (int) sqrt(max) + 1; i++)
+    {
+        if(pr[i])
+        {
+            for(int j = i * i; j < max; j= j+ i)
+            {
+                pr[j] = false;
+            }
+        }
+
+    }
+}
+int main()
+{
+
+   int tes;
+   long long int a , b;
+
+   cin >> tes;
+
+   while(tes--)
+   {
+       prime();
+       map <long long int ,long long int>mp , mc;
+       set <long long int> st;
+       set <long long int> :: iterator it , it1;
+
+       cin >> a >> b;
+       if(a == b)
+       {
+           cout<<"No jumping champion" <<endl;
+           continue;
+       }
+     vector <long long int > vc , vk , vd , vp;
+       for(long i = a; i <= b; i++)
+       {
+
+           if(pr[i])
+           {
+               vc.push_back(i);
+           }
+       }
+
+       long long int p;
+      if(vc.size() == 0)
+      {
+          cout<<"No jumping champion" <<endl;
+           continue;
+      }
+       reverse(vc.begin() , vc.end());
+      for(int i = 0; i < vc.size() - 1; i++)
+      {
+
+
+          p =  vc[i] -  vc[i + 1];
+
+          vk.push_back(p);
+      }
+
+    if(vk.size() == 0)
+    {
+        cout<<"No jumping champion" <<endl;
+           continue;
+    }
+      for(int i = 0; i < vk.size(); i++)
+      {
+          if(mp.count(vk[i]) == 0)
+          {
+              mp[vk[i]] = 1;
+          }
+          else
+            mp[vk[i]] = mp[vk[i]] + 1;
+
+          st.insert(vk[i]);
+      }
+
+
+      for(it =  st.begin(); it != st.end(); it++)
+      {
+
+           vd.push_back(*it);
+
+           vp.push_back(mp[*it]);
+      }
+
+      if(vp.size() == 1)
+      {
+          cout<<"The jumping champion is "<< abs(vd[0]) << endl;
+      }
+      else
+      {
+          long long int max1 =  (vp[0]) , max2 = (vd[0]);
+
+          for(int i = 0; i < vp.size(); i++)
+          {
+
+              if(max1 < vp[i])
+              {
+
+                  max1 = vp[i];
+                  max2 = vd[i];
+              }
+          }
+         int c = count(vp.begin() , vp.end() , max1);
+          if(c == 1)
+            cout<< "The jumping champion is " << max2 << endl;
+          else
+            cout<< "No jumping champion" << endl;
+
+
+      }
+
+
+
+   }
+
+
+
+}
