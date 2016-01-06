@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int tes , o =0;
+    cin >> tes;
+
+    while(tes--)
+    {
+        o++;
+        long int x , a , b;
+        cin >> x;
+        vector <long int> vc , vl , vm;
+        vector <long int> :: iterator it;
+        for(int i = 0; i < x; i++)
+        {
+            cin >> a;
+            vc.push_back(a);
+            cin >> b;
+            vl.push_back(b);
+        }
+
+        for(int i = vl.size() - 1; i > 0; i--)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                if(vl[j] > vl[j + 1])
+                {
+                    swap(vl[j] , vl[j + 1]);
+                    swap(vc[j] , vc[j + 1]);
+                }
+            }
+        }
+        long int sum = 0;
+        for(int i = 0; i < vc.size(); i++)
+        {
+            for(int j = i; j < vl.size(); j++)
+            {
+                sum = sum + vl[i] * vc[j];
+            }
+            vm.push_back(sum);
+            sum = 0;
+        }
+        it = max_element(vm.begin(),vm.end());
+
+        printf("Case %d: %ld\n", o , *it);
+        vl.clear();
+        vc.clear();
+        vm.clear();
+
+    }
+
+
+
+}
