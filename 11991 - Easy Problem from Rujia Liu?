@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+#define md 1000010
+long int a[md];
+ vector <long int> vx[md];
+using namespace std;
+int main()
+{
+    long int n , m;
+    while(cin >> n >> m)
+    {
+ 
+        long int p;
+       
+ 
+        vector <long int> vc;
+ 
+        for(int i = 0; i < n; i++)
+        {
+           cin >> a[i];
+ 
+           vx[a[i]].push_back(i + 1);
+        }
+ 
+    long int a , b;
+         for(int i=0;i<m;i++)
+        {
+            cin >> a >> b;
+ 
+            if(vx[b].size() < a)
+                printf("0\n");
+            else
+                printf("%ld\n",vx[b][a-1]);
+        }
+       for(int i = 0; i < md; i++)
+       {
+           vx[i].clear();
+       }
+ 
+    }
+}
