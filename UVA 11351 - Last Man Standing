@@ -1,0 +1,29 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int josep (int n,  int k)
+{
+   if(n == 1)
+   return n;
+   else
+
+   return (josep(n -1 , k) + k - 1) % n + 1;
+
+}
+int main()
+{
+    int tes , o = 0 , a ,b;
+
+   cin >> tes;
+
+   while(tes--)
+   {
+
+      cin >> a >> b;
+      o++;
+
+      printf("Case %d: %d\n", o, josep(a ,b));
+
+   }
+
+}
