@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     string s;
+     while(cin >> s)
+     {
+         if(s == "-1")
+            break;
+         int c = 0;
+         if(s[0] == '0'){
+                c  = 1;
+         while(s[0] == '0' || s[0] == 'x')
+         {
+             s.erase(s.begin());
+         }
+
+         }
+         int sum1 , sum2;
+         sum1 = sum2 =0;
+         if(c == 1)
+         {
+            for(int i = 0; i < s.length(); i++)
+            {
+                if(s[i] == 'a' || s[i] == 'A')
+                    sum1 = sum1 * 16 + (10);
+                else if(s[i] >= '0' && s[i] <= '9')
+                {
+                    sum1 = sum1 * 16 + s[i] - 48;
+                }
+                else if(s[i] == 'b' || s[i] == 'B')
+                {
+                    sum1 = sum1 * 16 +(11);
+
+                }
+                else if(s[i] == 'c' || s[i] == 'C')
+                {
+                    sum1 = sum1 * 16 + (12);
+                }
+                else if(s[i] == 'd' || s[i] == 'D')
+                {
+                    sum1 = sum1 * 16 + (13);
+                }
+                else if(s[i] =='e' || s[i] == 'E')
+                {
+                    sum1 = sum1 * 16 + (14);
+                }
+                else if(s[i] == 'f' || s[i] == 'F')
+                {
+                    sum1 = sum1 * 16 + (15);
+                }
+            }
+
+             cout<<sum1<< endl;
+         }
+         else
+         {
+             for(int i = 0; i < s.length(); i++)
+             {
+                 sum2 = sum2 * 10 + s[i] - 48;
+             }
+             printf("0x%X\n", sum2);
+         }
+
+     }
+
+}
