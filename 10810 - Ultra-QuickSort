@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <cstring>
+#define max 1000009
+long long int a[max] , L[max] , R[max];
+long long int p = 0;
+void merge (long long int a[] , long long int l ,long long  int m , long long int r)
+{
+    int i , j , k;
+    int n1 = m - l + 1 , n2 = r - m;
+    for(i = 0; i < n1; i++)
+    {
+        L[i] = a[l + i];
+    }
+    for(j = 0; j < n2; j++)
+    {
+        R[j] = a[m + 1 + j];
+    }
+    i = 0;
+    j = 0;
+    k = l;
+    int x = 0;
+    while(i < n1 && j < n2)
+    {
+        if(L[i] <= R[j])
+        {
+            a[k] = L[i] , p += x;
+            i++;
+        }
+        else
+        {
+            a[k] = R[j] , x++;
+            j++;
+        }
+        k++;
+    }
+    while(i < n1)
+    {
+        a[k] = L[i] , p += x;
+        i++;
+        k++;
+    }
+    while(j < n2)
+    {
+        a[k] = R[j];
+        j++;
+        k++;
+    }
+
+}
+void mergesort(long long  int a[] , long long  int l , long long int r)
+{
+    if(l < r)
+    {
+        int m = (l + r) / 2;
+
+        mergesort(a ,l, m);
+        mergesort(a, m + 1, r);
+        merge(a , l , m , r);
+    }
+}
+int main()
+{
+   long long int tes, i , q;
+    while(scanf("%lld", &tes) == 1)
+    {
+        
+        if(tes == 0)
+            break;
+        for(i = 0; i < tes; i++)
+        {
+            scanf("%lld", &a[i]);
+        }
+        p = 0;
+        mergesort(a, 0, tes - 1);
+       printf("%lld\n",p);
+    }
+}
