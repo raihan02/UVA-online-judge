@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dig (int n)
+{
+    int g = 0;
+
+    while(n > 0)
+    {
+        g = g +  n % 10;
+
+        n = n / 10;
+    }
+    return g;
+
+}
+int main()
+{
+    string s;
+    int tes;
+    cin >> tes;
+    getchar();
+    while(tes--)
+    {
+        getline(cin ,s );
+
+        string s3 = "", s2 ="" , s1 = "";
+
+        for(int i = 0; i < s.length(); i += 1)
+        {
+            if(s[i] >= '0' and s[i] <= '9')
+                s3 += s[i];
+        }
+        int p = 1 , k = 0;
+        for(int i = 0; i < s3.length(); i += 2)
+        {
+            s1 += s3[i];
+        }
+        for(int i = 1; i < s3.length(); i += 2)
+        {
+            s2 += s3[i];
+        }
+
+        vector <int> vc, vk , vm , vp;
+        int x = 0;
+        for(int i = 0; i < s1.length(); i++)
+        {
+            x = s1[i] - 48;
+
+            vc.push_back(x);
+        }
+
+        int l = 0 , kk;
+
+        for(int i = 0; i < vc.size(); i++)
+        {
+            l =  vc[i] * 2;
+            vk.push_back(l);
+
+        }
+
+        for(int i = 0; i < vk.size(); i++)
+        {
+
+
+            if(vk[i] > 9)
+            {
+                kk = dig(vk[i]);
+
+                vm.push_back(kk);
+            }
+            else
+            {
+                vm.push_back(vk[i]);
+            }
+        }
+        int sum1 = 0;
+        for(int i = 0; i < vm.size(); i++)
+        {
+            sum1 += vm[i];
+        }
+        int f = 0;
+        int sum2 = 0;
+        for(int i = 0; i < s2.length(); i++)
+        {
+            f = s2[i] - 48;
+            sum2 += f;
+        }
+        int sum3 = sum1 + sum2;
+
+        if(sum3 % 10 == 0)
+            printf("Valid\n");
+        else
+            printf("Invalid\n");
+            vm.clear();
+            vk.clear();
+            vc.clear();
+            
+    }
+
+}
+
