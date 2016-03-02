@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define max1 1000009
+using namespace std;
+long int a[max1] , s[max1] , k [max1];
+int lis (long int a[] , long int n)
+{
+    int *lis ,i , j , max = 0;
+    lis = (int*) malloc (sizeof(int) *n);
+ 
+    for(i = 0; i < n; i++)
+        lis[i] = 1;
+    for(i = 1;i <= n; i++)
+        for(j = 0; j < i; j++)
+        if(a[i] > a[j] && lis[i] < lis[j] + 1)
+        lis[i] = lis[j] + 1;
+ 
+    for(i = 0; i < n; i++)
+    {
+        if(max < lis[i])
+            max = lis[i];
+    }
+    free (lis);
+    return max;
+}
+ 
+int main()
+{
+     long int n , i , k , p , j  = 0;
+    while(1)
+    {
+      i = 0; j++;
+ 
+      cin >> n;
+      if(n == -1)
+        break;
+ 
+      s[i++]= n;
+    while(scanf("%ld",&n) && n!=-1)
+    {
+        s[i++]=n;
+    }
+      reverse(s, s + i);
+ 
+      if(j != 1)
+        printf("\n");
+       printf("Test #%ld:\n  maximum possible interceptions: %ld\n",j,lis(s, i));
+ 
+    }
+}
