@@ -1,0 +1,118 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef vector <int> vc;
+typedef vector <string> vs;
+typedef map <string, int> mp;
+typedef map<int, string> ms;
+void prin (int x);
+#define max1 1005
+int dist[max1];
+int ax[max1];
+vc node[max1];
+int a , b;
+mp mk;
+ms md;
+queue <int> mq;
+int main()
+{
+    int n , cc= 0;
+
+    while(cin >> n)
+    {
+        if(cc != 0)
+            printf("\n");
+        cc++;
+
+        memset(dist , -1, sizeof(dist));
+        memset(ax, 0 , sizeof ax);
+
+        mk.clear();
+        string s1 , s2;
+        int in = 0;
+
+        for(int i = 0; i < n; i++)
+        {
+            cin >> s1 >> s2;
+            if(!mk[s1])
+            {
+                mk[s1] = ++in;
+                md[in] = s1;
+                node[mk[s1]].clear();
+            }
+            if(!mk[s2])
+            {
+                mk[s2] = ++ in;
+                md[in] = s2;
+                node[mk[s2]].clear();
+            }
+
+            node[mk[s1]].push_back(mk[s2]);
+            node[mk[s2]].push_back(mk[s1]);
+        }
+
+        cin >> s1 >> s2;
+        if(s1 == s2)
+        {
+            cout<< s1 << " " <<s2 << endl;
+            continue;
+        }
+        else
+        {
+
+            int source , u , v;
+            mq.push(mk[s1]);
+            b = mk[s2];
+            ax[b] = 0;
+            a = mk[s1];
+            dist[mk[s1]] = 1;
+
+            while(!mq.empty())
+            {
+                u = mq.front();
+
+                mq.pop();
+
+                for(int i = 0; i < node[u].size(); i++)
+                {
+                    v = node[u][i];
+
+                    if(dist[v] == -1)
+                    {
+                        ax[v] = u;
+                        mq.push(v);
+                        dist[v] = 1;
+
+                    }
+                }
+            }
+            if(ax[b] == 0)
+            {
+                printf("No route\n");
+
+            }
+            else
+            {
+                if(s1 != s2)
+                {
+                    prin(b);
+                }
+            }
+
+        }
+
+    }
+
+}
+void prin(int x)
+{
+    if(md[ax[x]] != md[a])
+    {
+        prin(ax[x]);
+
+        cout<< md[ax[x]] << " " << md[x] << endl;
+    }
+    else
+    {
+        cout<< md[ax[x]] << " " << md[x] << endl;
+    }
+}
