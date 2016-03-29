@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef vector <int> vc;
+vc v;
+int arr[10005];
+int main()
+{
+    int i = 0;
+    int n;
+    while(cin >> n)
+    {
+        arr[i] = n;
+        sort(arr , arr + i + 1);
+        if(i % 2 == 0)
+        {
+            printf("%d\n",arr[i / 2]);
+        }
+        else
+        {
+            int p = arr[i / 2] + arr[i/ 2  +1];
+
+            printf("%d\n", p/ 2);
+        }
+        i++;
+    }
+
+
+
+}
