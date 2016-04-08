@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define max1 500010
+ll a[max1];
+int main()
+{
+    a[1] = 1;
+    a[2] = 2;
+    int ck = 2;
+    for(int i = 3; i < max1; i++)
+    {
+        if(i < ck){
+            ck = 2;
+        }
+        a[i] = ck;
+        ck += 2;
+    }
+
+    ll n;
+
+    while(cin >> n and n)
+    {
+        cout<< a[n] << endl;
+    }
+}
