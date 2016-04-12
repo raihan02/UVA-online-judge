@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool cmp (int x , int y)
+{
+    return x > y;
+}
+int main()
+{
+    int tes;
+
+    string s;
+
+    int cnt[1000] = {0};
+    vector <int> vc, vm;
+
+    for(int i = 1; i <= 6; i++)
+        for(int j = 1; j <= 6; j++)
+            vc.push_back(i + j);
+            sort(vc.begin(), vc.end());
+      cin >> tes;
+      getchar();
+
+      while(tes--)
+      {
+          getline(cin , s);
+
+          for(int i = 0; i < s.length(); i++)
+          {
+              cnt[s[i]]++;
+          }
+          for(int i = 'A'; i <= 'Z'; i++)
+          {
+              if(cnt[i])
+                vm.push_back(cnt[i]);
+          }
+          for(int i = '0'; i <= '9'; i++)
+          {
+              if(cnt[i])
+                vm.push_back(cnt[i]);
+          }
+          int sum = 0;
+          sort(vm.begin(), vm.end(), cmp);
+          for(int i = 0; i < vm.size(); i++)
+          {
+              sum = sum + vm[i] * vc[i];
+          }
+          printf("%d\n",sum);
+          vm.clear();
+          vc.clear();
+          memset(cnt , 0, sizeof(cnt));
+
+
+      }
+
+
+
+}
