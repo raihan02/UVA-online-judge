@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int tes;
+   while(cin >> tes)
+   {
+       if(!tes)
+        break;
+       vector<pair<int , int>> vp;
+       vector<int> vc;
+       for(int i = 0; i < tes; i++)
+       {
+           int a , b , c;
+           cin >> a >> b >> c;
+
+
+           vp.push_back(make_pair(c, a * b * c));
+       }
+       sort(vp.begin(), vp.end());
+        reverse(vp.begin(), vp.end());
+        int l = vp[0].first;
+        int max = vp[0].second;
+        for(int i = 0; i < vp.size(); i++)
+        {
+            if(vp[i].first == l)
+            {
+                if(max < vp[i].second)
+                    max = vp[i].second;
+            }
+        }
+        cout<<max<<endl;
+   }
+
+}
