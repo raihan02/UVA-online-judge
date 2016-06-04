@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+
+int main(){
+    vector <ll> vc , vk;
+    ll tes , n , p , q;
+    while(cin >> tes )
+    {
+        if(!tes)
+            break;
+        for(int i = 0; i < tes; i++)
+        {
+            cin >> p >> q;
+            vc.push_back(p);
+            vk.push_back(q);
+        }
+        sort(vc.begin(), vc.end(), greater<ll>());
+        sort(vk.begin(), vk.end() , greater<ll>());
+
+        bool ck = 0;
+        for(int i = 0; i < vk.size(); i++)
+        {
+            if(vc[i] != vk[i])
+            {
+                ck = 1;
+                break;
+            }
+        }
+        if(ck == 1)
+            printf("NO\n");
+        else
+            printf("YES\n");
+        vk.clear();
+        vc.clear();
+    }
+
+}
