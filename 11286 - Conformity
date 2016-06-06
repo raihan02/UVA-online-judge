@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int tes;
+   while(cin >> tes and tes)
+   {
+
+      map< vector<int> , int> mp;
+      map< vector<int> , int> :: iterator it;
+      int mx = 1;
+     for(int i = 0; i < tes; i++)
+     {
+         vector<int> vc(6);
+         for(int j = 0; j < 5; j++){
+         cin >> vc[j];
+
+         }
+         sort(vc.begin(), vc.end());
+         mp[vc] += 1;
+         mx =  max(mp[vc] , mx);
+     }
+     int sum = 0;
+     for(it = mp.begin(); it != mp.end() ;it++)
+     {
+         if(mx == it->second)
+         {
+             sum += it->second;
+         }
+     }
+     cout<<sum<<endl;
+     mp.clear();
+
+   }
+
+}
