@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   string s;
+   set<string> st;
+   set<string>:: iterator it;
+   while(cin >> s)
+   {
+       st.insert(s);
+   }
+   string temp = "" , a , b;
+   for(it = st.begin(); it != st.end(); it++)
+   {
+       temp = *it;
+       for(int i = 1; i < temp.size(); i++)
+       {
+           a = temp.substr(0 , i);
+           b = temp.substr(i);
+           if(st.find(a) != st.end() and st.find(b) != st.end())
+       {
+           cout<< temp<<endl;
+           break;
+       }
+
+       }
+
+   }
+}
