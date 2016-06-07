@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool paisi (queue <char> q , char x)
+{
+    while(!q.empty())
+    {
+        if(q.front() == x) return 1;
+       q.pop();
+    }
+    return 0;
+}
+int main()
+{
+    int tes , p = 0;
+    cin >> tes;
+    while(tes--)
+    {
+        p++;
+        queue <char> q;
+        int m , n ;
+        string s;
+        cin >> m>> n >> s;
+        int res = 0;
+        for(int i = 0; i < s.length(); i++)
+        {
+            res += paisi(q , s[i]);
+            q.push(s[i]);
+            if(q.size() > n)
+                q.pop();
+        }
+       printf("Case %d: %d\n",p , res);
+    }
+
+}
