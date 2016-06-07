@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+ll a[1005];
+int s[10][10];
+int main()
+{
+   vector<ll> vc,  vk;
+   ll b;
+   int tes, p = 0;
+  cin >> tes;
+  char c;
+  while(tes--)
+  {
+      p++;
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 5; j++)
+        {
+           scanf(" %c", &c);
+           s[i][j] = c;
+        }
+    }
+    bool f = 0;
+    int x , y;
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 5; j++){
+        if(s[i][j] == 124)
+        {
+            x = j + 1;
+            f = 1;
+        }
+
+    }
+    if(f == 1)
+        break;
+
+    }
+    bool t = 0, v = 0;
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 5; j++){
+        if(s[i][j] == 62)
+        {
+            y = j + 1;
+            t = 1;
+        }
+        else if(s[i][j] == 60)
+        {
+            y = j + 1;
+            v = 1;
+        }
+
+    }
+    if(t == 1 or v == 1)
+        break;
+
+    }
+
+    if(v == 1 and x > y)
+    {
+        printf("Case %d: No Ball\n",p);
+    }
+    else if(t == 1 and x < y)
+    {
+        printf("Case %d: No Ball\n",p);
+    }
+    else
+        printf("Case %d: Thik Ball\n",p);
+
+  }
+
+}
