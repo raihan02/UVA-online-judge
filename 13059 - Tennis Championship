@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+   vector<ll> vc,  vk;
+   ll a , b;
+   int tes;
+   while(cin >> a)
+   {
+       cout<<a-1<<endl;
+   }
+
+}
