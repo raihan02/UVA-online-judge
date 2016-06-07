@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool pr(int n)
+{
+    int i;
+    if(n==1)
+    return false;
+    if(n==2)
+    return true;
+    if(n%2==0)
+    return false;
+    for(i=3;i<=sqrt(n);i+=2)
+    {
+        if(n%i==0)
+        return false;
+    }
+    return true;
+}
+int main()
+{
+   int tes;
+   cin >> tes;
+   for(int i = 0; i < tes; i++)
+   {
+       int n;
+       scanf("%d,", &n);
+        if(pr(n) == true)
+        {
+            int f = pow(2 , n) - 1;
+
+            if(pr(f) == true)
+                printf("Yes\n");
+            else
+                printf("No\n");
+        }
+        else
+            printf("No\n");
+   }
+}
