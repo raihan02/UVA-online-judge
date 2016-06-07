@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+   vector<ll> vc,  vk;
+   ll a , b;
+   int tes;
+   cin >> tes;
+   while(tes--)
+   {
+       cin >> a >> b;
+       ll p;
+       for(int i = 0; i < a; i++)
+       {
+           cin >> p;
+           vc.push_back(p);
+       }
+       sort(vc.begin(), vc.end());
+       ll sum = 0;
+       ll count = 0;
+       for(int i = 0; i < vc.size(); i++)
+       {
+           sum += vc[i];
+          if(sum <= b)
+          {
+              count++;
+          }
+          else
+            break;
+       }
+       cout<<count<<endl;
+       vc.clear();
+   }
+
+}
