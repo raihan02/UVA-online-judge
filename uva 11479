@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n, x , value;
+    while(cin >> n)
+    {
+        stack<int> st;
+        queue<int> q;
+        priority_queue<int>pq;
+        int ck1 , ck2 , ck3;
+        ck1 = 1, ck2 = 1, ck3 = 1;
+        for(int i = 0; i < n; i++)
+        {
+            cin >> x >> value;
+            if(x == 1)
+            {
+                st.push(value);
+                q.push(value);
+                pq.push(value);
+            }
+            else if(x == 2)
+            {
+                if(ck1 == 1)
+                {
+                    if(!st.empty() and value == st.top())
+                    {
+                        st.pop();
+                    }
+                    else
+                    {
+                        ck1 = 0;
+                    }
+                }
+                if(ck2 == 1)
+                {
+                    if(!q.empty() and value == q.front())
+                    {
+                        q.pop();
+                    }
+                    else
+                    {
+                        ck2 = 0;
+                    }
+                }
+                if(ck3 == 1)
+                {
+                    if(!pq.empty() and value == pq.top())
+                    {
+                        pq.pop();
+                    }
+                    else
+                    {
+                        ck3 = 0;
+                    }
+                }
+            }
+        }
+        if(ck1 and !ck2 and !ck3)
+            printf("stack\n");
+        else if(!ck1 and ck2 and !ck3)
+        {
+            printf("queue\n");
+        }
+        else if(!ck1 and !ck2 and ck3)
+            printf("priority queu\n");
+        else if((ck1 == 1 and ck2 == 1) or (ck2 == 1 and ck3 == 1) or (ck3 == 1 && ck1 == 1))
+         printf("not sure\n");
+        else
+            printf("impossible\n");
+
+    }
+}
