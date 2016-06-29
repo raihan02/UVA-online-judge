@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+using namespace std;
+string s[11] = {"T" ,"qaz" , "wsx" , "edc" ,"rfvtgb" , " " , " " , "yhnujm" , "ik," , "ol." , "p;/"};
+map<int, string> mp;
+int main()
+{
+       for(int i = 1; i <= 10; i++)
+      {
+          mp[i] = s[i];
+      }
+
+  int m , n;
+
+  while(cin >> m >> n)
+  {
+      vector<int> vc;
+      int k;
+
+      for(int i = 0; i < m; i++)
+      {
+          cin >> k;
+          vc.push_back(k);
+      }
+      vector<string> vs , vk ,v;
+      string s1;
+      for(int i = 0; i < n; i++)
+      {
+          cin >> s1;
+          vs.push_back(s1);
+      }
+      string s2;
+      char ck;
+      int c;
+      for(int i = 0; i < vs.size(); i++)
+      {
+          bool flag = false;
+          for(int j = 0; j < vs[i].size(); j++)
+          {
+              ck = vs[i][j];
+
+             for(int p = 0; p < vc.size(); p++)
+             {
+                 s2 = mp[vc[p]];
+                 c = count(s2.begin(), s2.end() , ck);
+                 if(c > 0)
+                 {
+                     flag = true;
+                     break;
+                 }
+             }
+
+          }
+          if(flag == false)
+            vk.push_back(vs[i]);
+
+      }
+       int max = 0;
+    for(int i = 0 ; i< vk.size(); i++)
+    {
+         if(max < vk[i].length())
+                max = vk[i].length();
+    }
+
+    for(int i = 0; i < vk.size(); i++)
+    {
+        if(max == vk[i].length())
+        {
+            v.push_back(vk[i]);
+        }
+    }
+    if(v.size() == 0){
+    cout<<0<<endl;
+    continue;
+    }
+    ///cout<<v.size()<<endl;
+    set<string> st;
+    set<string> :: iterator it;
+    for(int i = 0; i < v.size(); i++)
+        st.insert(v[i]);
+        cout<<st.size()<<endl;
+        for(it = st.begin(); it != st.end(); it++)
+            cout<<*it<<endl;
+    v.clear();
+    vs.clear();
+    vc.clear();
+    vk.clear();
+    st.clear();
+
+  }
+
+}
