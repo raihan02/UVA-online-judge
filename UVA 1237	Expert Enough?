@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+     int tes;
+     cin >> tes;
+
+     while(tes--)
+     {
+         ll a , b, c , d , p;
+         vector <string> vs;
+         vector<ll> vc, vk , vp;
+         string s;
+         cin >> a;
+
+         for(int i = 0; i < a; i++)
+         {
+             cin >> s >> c>> d;
+             vs.push_back(s);
+             vc.push_back(c);
+             vk.push_back(d);
+         }
+         cin >> p;
+         while(p--)
+         {
+             cin >> b;
+             int cp =0 , ck;
+             for(int i = 0; i < vc.size(); i++)
+             {
+
+                 if(vc[i] <= b and b <= vk[i])
+                    cp++ , ck = i;
+                    if(cp > 1)
+                        break;
+             }
+             if(cp == 1)
+                cout<<vs[ck]<<endl;
+             else
+                cout<<"UNDETERMINED"<<endl;
+         }
+         if(tes)
+            printf("\n");
+     }
+}
