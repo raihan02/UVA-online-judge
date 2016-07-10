@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s , s1;
+    int tes , o = 0;
+    cin >> tes;
+    while(tes--)
+    {
+        o++;
+        int n;
+        cin >> n;
+        vector <string> vs, vk;
+        while(n--)
+        {
+            cin >> s;
+
+            vs.push_back(s);
+        }
+        cin >> s1;
+
+        string s2;
+
+        for(int i = 0; i < vs.size(); i++)
+        {
+            int c = 0;
+            for(int j = 0; j < vs[i].size(); j++)
+            {
+                if(vs[i][j] == s1[j])
+                    c++;
+            }
+            if(c + 1 == vs[i].size() || c == vs[i].size())
+                vk.push_back(vs[i]);
+
+        }
+        printf("Case %d:\n" , o);
+        for(int i = 0; i < vk.size(); i++)
+        {
+            cout<< vk[i]<< endl;
+        }
+
+     vs.clear();
+     vk.clear();
+    }
+
+
+}
