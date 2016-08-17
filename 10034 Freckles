@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair <int , double> pi;
+typedef pair<double , int> pd;
+typedef vector <pi> vc;
+vc vertex[1002];
+int arr[1002];
+double arr1[1002] , arr2[1002];
+priority_queue <pd > pq;
+
+void prims_algo(int src)
+{
+    arr[src] = 1;
+
+    for(int i = 0; i < vertex[src].size(); i++)
+    {
+        pi v = vertex[src][i];
+        if(arr[v.first] == -1)
+        {
+
+            pq.push(make_pair(-v.second , -v.first));
+        }
+    }
+}
+int main()
+{
+    ios_base :: sync_with_stdio(0);
+    cin.tie(0);
+   int tes;
+   cin >> tes;
+   bool f = false;
+   while(tes--)
+   {
+       int n;
+
+       cin >> n;
+       memset(arr,-1 , sizeof arr);
+       for(int i = 0; i < n; i++)
+       {
+           cin >> arr1[i] >> arr2[i];
+       }
+       for(int i = 0; i < n; i++)
+       {
+           for(int j = i + 1; j < n; j++)
+           {
+               double Cost=sqrt((arr1[j] - arr1[i])*( arr1[j] - arr1[i] )+( arr2[j] - arr2[i]) * ( arr2[j] - arr2[i]));
+               vertex[i].push_back(make_pair(j , Cost));
+               vertex[j].push_back(make_pair(i , Cost));
+
+           }
+       }
+
+       double mst = 0;
+
+       prims_algo(0);
+       while(pq.size())
+       {
+           pd front = pq.top();
+           pq.pop();
+            int u = - front.second ;
+           double w = -front.first;
+           if(arr[u] == -1)
+           {
+               mst += w;
+               prims_algo(u);
+           }
+
+       }
+
+      if(f) printf("\n");  f = true;
+        printf("%.2lf\n", mst);
+
+        for(int i = 0;  i < n + 1; i++)
+            vertex[i].clear();
+
+
+   }
+
+}
