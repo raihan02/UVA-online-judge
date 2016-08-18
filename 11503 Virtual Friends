@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+int parent[100005];
+int arr[100005];
+map<string , int> mp;
+void set_all()
+{
+    for(int i = 0; i <= 100002; i++)
+    {
+        arr[i] = 1;
+        parent[i] = i;
+    }
+}
+int find_p(int n)
+{
+    if(parent[n] == n)
+        return n;
+    return parent[n] = find_p(parent[n]);
+}
+int Uninon (int a , int b)
+{
+     a = find_p(a);
+
+     b = find_p(b);
+
+     if(a != b)
+     {
+         if(arr[a] > arr[b])
+         {
+             arr[a] += arr[b];
+             parent[b] = a;
+             return arr[a];
+         }
+         else
+         {
+             arr[b] += arr[a];
+             parent[a] = b;
+             return arr[b];
+         }
+     }
+     return arr[a];
+
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int tes;
+    cin >> tes;
+    while(tes--)
+    {
+        int n;
+        cin >> n;
+        string s1, s2;
+        int in = 0;
+        set_all();
+        while(n--)
+        {
+            cin >> s1 >> s2;
+
+            if(mp.find(s1) == mp.end())
+                mp[s1] = in++;
+            if(mp.find(s2) == mp.end())
+                mp[s2] = in++;
+
+
+                Uninon(mp[s1] , mp[s2]);
+                cout<<Uninon(mp[s1], mp[s2])<<endl;
+        }
+        mp.clear();
+
+    }
+}
