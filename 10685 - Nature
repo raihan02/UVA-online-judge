@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+int arr[5005] , parent[5005];
+map <string , int> mp;
+void Set_all (int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        parent[i] = i;
+        arr[i] = 1;
+    }
+}
+int make_friend (int n)
+{
+    if(parent[n] == n)
+        return n;
+    return parent[n] = make_friend(parent[n]);
+}
+void Union_find (int a , int b)
+{
+    int x , y;
+    x = make_friend(a);
+    y = make_friend(b);
+
+    if(x == y) return;
+    else
+    {
+        parent[x] = y;
+
+        arr[y] += arr[x];
+    }
+
+}
+int main()
+{
+    int n , query;
+    ios_base :: sync_with_stdio(0);
+    cin.tie(0);
+
+    while(cin >> n >> query)
+    {
+        if(n == 0 and query == 0)
+            break;
+        Set_all(n);
+        string s;
+
+        for(int i = 0; i < n; i++)
+        {
+            cin >> s;
+            mp[s] = i;
+        }
+        string s1,  s2;
+        while(query--)
+        {
+            cin >> s1 >> s2;
+
+            int p , q;
+            p = mp[s1];
+            q = mp[s2];
+
+            Union_find(p , q);
+        }
+      int maxs = 0;
+     for(int i = 0; i < n; i++)
+     {
+         if(arr[i] > maxs)
+            maxs = arr[i];
+     }
+     cout<<maxs << endl;
+     
+     mp.clear();
+
+    }
+}
