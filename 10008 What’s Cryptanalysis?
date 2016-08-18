@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool cmp (int a , int b)
+{
+    return a > b;
+}
+int main()
+{
+    set <char> st;
+    map <char, int> mp;
+    int tes;
+    cin >> tes;
+    getchar();
+    while(tes--)
+    {
+        string s , s1 = "";
+        getline(cin , s);
+        for(int i = 0; i < s.length(); i++)
+        {
+            if((s[i] >= 'a' and s[i] <= 'z') or (s[i] >= 'A' and s[i] <= 'Z'))
+             {
+                 if(islower(s[i]))
+                 {
+                     s1 += toupper(s[i]);
+                 }
+                 else
+                    s1 += (s[i]);
+             }
+
+        }
+        for(int i = 0; i < s1.length(); i++)
+        {
+            if(mp.count(s1[i]) == 0)
+                mp[s1[i]] = 1;
+            else
+                mp[s1[i]] = mp[s1[i]] + 1;
+            st.insert(s1[i]);
+        }
+
+    }
+
+    set <char> :: iterator it;
+    vector <pair< int , char> > vc;
+    int mx = 0;
+    for(it = st.begin(); it != st.end(); it++)
+    {
+        if(mx < mp[*it]) 
+            mx = mp[*it];
+    }
+
+    for(int i = mx; i >= 1; i--)
+    {
+        for(char c = 'A'; c <= 'Z'; c++)
+        {
+            if(mp[c] == i){
+                cout<< c << " " << i << endl;
+
+            }
+
+        }
+    }
+
+   mp.clear();
+   st.clear();
+
+
+}
