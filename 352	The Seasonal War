@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+char maze[100][100];
+int reached[101][101];
+int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1};
+int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1};
+int row , col;
+void dfs_flood_fill (int x , int y)
+{
+    reached[x][y] = 1;
+
+    for(int i = 0; i < 8; i++)
+    {
+       int a, b;
+
+       a = x + fx[i];
+       b = y + fy[i];
+
+       if(a >= 0 and a < row and b >= 0 and b < row and reached[a][b] == 0)
+       {
+           reached[a][b] = 1;
+
+           if(maze[a][b] == '1')
+           {
+               dfs_flood_fill(a, b);
+           }
+       }
+    }
+}
+int main()
+{
+    ios_base:: sync_with_stdio(0);
+    cin.tie(0);
+   //int row , col;
+    int o = 0;
+   while(cin >> row )
+   {
+        o++;
+
+       for(int i = 0; i < row; i++)
+       {
+           for(int j = 0; j < row; j++)
+           {
+               cin >> maze[i][j];
+           }
+       }
+
+       int cnt = 0;
+       memset(reached , 0 , sizeof (reached));
+       for(int i = 0; i < row; i++)
+       {
+           for(int j = 0; j < row; j++)
+           {
+                if(reached[i][j] == 0)
+                {
+                    reached[i][j] = 1;
+                    if(maze[i][j] == '1')
+                    {
+                        cnt++;
+                        dfs_flood_fill(i , j);
+                    }
+                }
+
+           }
+       }
+       printf("Image number %d contains %d war eagles.\n",o, cnt);
+
+
+   }
+
+
+}
