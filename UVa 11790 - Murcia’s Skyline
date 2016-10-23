@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#define pb push_back
+using namespace std;
+
+vector <int> D , P;
+int n;
+int arr1[10001];
+int arr2[10001];
+int lis()
+{
+
+    int x = 0;
+      for(int i = 0;i < D.size(); i++){
+            arr1[i] = P[i];
+
+            for(int j = 0; j< i; j++){
+                if(D[j] < D[i] && P[i] + arr1[j] > arr1[i]){
+                    arr1[i] = P[i]+ arr1[j];
+                }
+            }
+
+            if(arr1 [i]> arr1[x]) x = i;
+        }
+    return arr1[x];
+}
+int main()
+{
+    int tes , o = 0;
+    cin >> tes;
+    while(tes--)
+    {
+        o++;
+        cin >> n;
+        for(int i = 0; i < n; i++)
+        {
+            int a;
+            cin >> a;
+            D.pb(a);
+        }
+        for(int i = 0; i < n; i++)
+        {
+            int a;
+            cin >> a;
+            P.pb(a);
+        }
+
+        int ck1  = lis();
+        reverse(D.begin(), D.end());
+        reverse(P.begin(), P.end());
+         int ck2 = lis();
+         if(ck1 >= ck2)
+         printf("Case %d. Increasing (%d). Decreasing (%d).\n",o,ck1, ck2);
+         else
+         printf("Case %d. Decreasing (%d). Increasing (%d).\n",o, ck2, ck1);
+         D.clear();
+         P.clear();
+         memset(arr1 , 0, sizeof arr1);
+
+    }
+}
