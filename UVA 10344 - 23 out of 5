@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+int arr[7];
+int vis[10000];
+bool f = 0;
+void dfs (int c , int sum)
+{
+    if(c == 5 && sum == 23)
+    {
+        f=  1;
+        return;
+    }
+    else
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if(!vis[i])
+            {
+                vis[i] = 1;
+                dfs(c + 1, sum + arr[i]);
+                dfs(c + 1, sum * arr[i]);
+                dfs(c + 1, sum - arr[i]);
+                vis[i] = 0;
+            }
+        }
+    }
+}
+
+int main()
+{
+    while(cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4])
+    {
+        if(!arr[0] && !arr[1] &&!arr[2] &&!arr[3] &&!arr[4])
+          break;
+           f = 0;
+          for(int i = 0; i < 5; i++)
+          {
+              vis[i] = 1;
+              dfs(1, arr[i]);
+              vis[i] = 0;
+          }
+
+          if(f)
+            printf("Possible\n");
+          else
+            printf("Impossible\n");
+          memset(arr,0,sizeof arr);
+          memset(vis, 0, sizeof vis);
+    }
+}
