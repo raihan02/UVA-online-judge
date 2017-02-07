@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+    ll a, b;
+    int tes;
+    scanf(" %d", &tes);
+    while(tes--)
+    {
+        scanf("%lld %lld", &a, &b);
+        ll i, p , mx = -1 , j ,c , res = 0;
+        for(i = a; i <= b; i++)
+        {
+            p = sqrt(i);
+            c = 0;
+            for(j = 1; j <= p; j++)
+            {
+                if(i % j == 0)
+                   {
+                       c++;
+                       if(i / j == j)
+                        continue;
+                       c++;
+                   }
+            }
+           if(mx < c)
+           {
+               mx = c;
+               res =i;
+           }
+        }
+       printf("Between %lld and %lld, %lld has a maximum of %lld divisors.\n",a,b,res,mx);
+    }
+}
